@@ -1,0 +1,36 @@
+.tools/
+.local/
+.test-data/
+dist/
+node_modules/
+runtime/node_modules/
+*.test.exe
+*.log
+*.tmp
+coverage.out
+agent-vault-windows-x64*.zip
+
+# Local renders and exported deliverables
+output/
+docs/presentation/.build/
+
+# Credentials, browser profiles, and local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.backup-*
+vault.json
+vault.enc
+vault.key
+manager-profile/
+.agent-browser/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

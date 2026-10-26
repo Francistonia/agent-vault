@@ -27,8 +27,9 @@ try {
     Copy-Item -LiteralPath (Join-Path $taskRoot 'scripts/Start-AgentVault.cmd') -Destination (Join-Path $taskRoot 'dist/Start-AgentVault.cmd') -Force
     Copy-Item -LiteralPath (Join-Path $taskRoot 'scripts/Start-AgentVault.ps1') -Destination (Join-Path $taskRoot 'dist/Start-AgentVault.ps1') -Force
     Copy-Item -LiteralPath (Join-Path $taskRoot 'README.md') -Destination (Join-Path $taskRoot 'dist/README.md') -Force
+    Copy-Item -LiteralPath (Join-Path $taskRoot 'LICENSE') -Destination (Join-Path $taskRoot 'dist/LICENSE') -Force
     New-Item -ItemType Directory -Path (Join-Path $taskRoot 'dist/docs') -Force | Out-Null
-    foreach ($taskDoc in @('implementation-status.md','windows-agent-vault-design.md','windows-agent-vault-constraints.md','context-verification.md','mcp-integration.md')) {
+    foreach ($taskDoc in @('implementation-status.md','windows-agent-vault-design.md','windows-agent-vault-constraints.md','context-verification.md','mcp-integration.md','privacy.md','code-signing.md')) {
         Copy-Item -LiteralPath (Join-Path $taskRoot ('docs/' + $taskDoc)) -Destination (Join-Path $taskRoot ('dist/docs/' + $taskDoc)) -Force
     }
     New-Item -ItemType Directory -Path (Join-Path $taskRoot 'dist/tools') -Force | Out-Null

@@ -140,4 +140,8 @@ go test ./internal/vault -run 'TestBrowserRealLogin|TestPasswordModesRealBrowser
 
 [详细设计](docs/windows-agent-vault-design.md) · [约束清单](docs/windows-agent-vault-constraints.md)
 
-agent-browser 为 Apache-2.0 第三方组件。Go 模块版本记录在 `go.mod` / `go.sum` 与分发包的 `build-dependencies.txt`，第三方许可证随包保留。产品未上传到软件商店、未签名，当前分发包用于本地开发验证。
+本项目维护的代码采用 [MIT 许可证](LICENSE)。agent-browser 为 Apache-2.0 第三方组件。Go 模块版本记录在 `go.mod` / `go.sum` 与分发包的 `build-dependencies.txt`，第三方许可证随包保留。
+
+[隐私说明 / Privacy policy](docs/privacy.md) · [Code signing policy](docs/code-signing.md)
+
+项目正在准备 SignPath Foundation 免费开源签名申请，尚未获得批准。已发布的 v0.1.7 分发包仍未签名；添加申请材料不会改变现有分发包的签名状态。产品尚未上传到软件商店。

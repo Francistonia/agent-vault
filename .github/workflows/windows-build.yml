@@ -1,0 +1,63 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test Windows x64
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: Set up Node.js for the pinned browser package
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+
+      - name: Install the pinned browser component
+        shell: pwsh
+        run: ./scripts/setup-browser.ps1
+
+      - name: Build the unsigned distribution
+        shell: pwsh
+        run: ./scripts/build.ps1 -SkipTests
+
+      - name: Run unit and protocol tests
+        shell: pwsh
+        run: |
+          $env:GOMODCACHE = Join-Path $PWD '.tools/gomodcache'
+          $env:GOCACHE = Join-Path $PWD '.tools/gocache'
+          go vet ./...
+          if ($LASTEXITCODE -ne 0) { throw 'go vet failed' }
+          go test ./... -count=1
+          if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
+
+      - name: Upload the unsigned distribution for review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: agent-vault-windows-x64-unsigned
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14

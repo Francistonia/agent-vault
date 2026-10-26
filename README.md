@@ -144,4 +144,4 @@ go test ./internal/vault -run 'TestBrowserRealLogin|TestPasswordModesRealBrowser
 
 [隐私说明 / Privacy policy](docs/privacy.md) · [Code signing policy](docs/code-signing.md)
 
-项目正在准备 SignPath Foundation 免费开源签名申请，尚未获得批准。已发布的 v0.1.7 分发包仍未签名；添加申请材料不会改变现有分发包的签名状态。产品尚未上传到软件商店。
+项目已于 2026-10-26 提交 SignPath Foundation 免费开源签名申请，等待审核，尚未获得批准。已发布的 v0.1.7 分发包仍未签名；提交申请不会改变现有分发包的签名状态。产品尚未上传到软件商店。

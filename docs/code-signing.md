@@ -2,10 +2,11 @@
 
 ## Current status
 
-Agent Vault is preparing an application for free open-source code signing from
-[SignPath Foundation](https://signpath.org/). No application approval or signing
-certificate has been received. The published v0.1.7 release is unsigned. Adding
-this policy does not sign or alter that release.
+Agent Vault submitted an application for free open-source code signing from
+[SignPath Foundation](https://signpath.org/) on 2026-10-26. The application form
+confirmed submission; review is pending. No application approval or signing
+certificate has been received. The published v0.1.7 release is unsigned.
+Submitting the application does not sign or alter that release.
 
 The project does not claim sponsorship or signing coverage before approval.
 If accepted and activated, the signing attribution will be:
@@ -29,6 +30,10 @@ repository, installs the pinned browser component, builds the Windows executable
 runs Go checks and uploads the unsigned distribution for review. GitHub Actions
 dependencies are pinned to commit hashes. This build workflow does not request
 signing or publish a release.
+
+The initial Windows build, Go checks and tests completed successfully in
+[this GitHub Actions run](https://github.com/Francistonia/agent-vault/actions/runs/40264572986).
+The opt-in full browser/UI tests are not enabled in that workflow.
 
 The proposed signing scope covers binaries built from source maintained in this
 repository. SignPath Foundation's project signing must not be used to re-sign

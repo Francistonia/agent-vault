@@ -34,7 +34,7 @@ def main():
     installer, dist = Path(args.installer).resolve(), Path(args.dist).resolve()
     report = Path(args.report).resolve()
     version = '0.1.8'
-    work = Path(tempfile.mkdtemp(prefix='agent-vault-installer-'))
+    work = Path(tempfile.mkdtemp(prefix='agent-vault-installer-')).resolve()
     install = work / '安装目录 with spaces'
     fixture = work / 'isolated-vault'
     start_link = shell_folder(2) / 'Agent Vault' / 'Agent Vault.lnk'

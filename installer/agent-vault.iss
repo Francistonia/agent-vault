@@ -43,7 +43,7 @@ VersionInfoProductName=Agent Vault
 VersionInfoDescription=Agent Vault Windows Installer
 
 [Languages]
-Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
+Name: "chinesesimplified"; MessagesFile: "languages\ChineseSimplified.isl"
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]

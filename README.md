@@ -6,7 +6,9 @@
 
 ## 启动
 
-解压完整的 `agent-vault-windows-x64.zip`，双击 `Start-AgentVault.cmd`。
+推荐在 [GitHub Releases](https://github.com/Francistonia/agent-vault/releases) 下载 Windows 安装包 `agent-vault-v0.1.8-windows-x64-setup.exe`，安装后从开始菜单启动 Agent Vault。仅安装到当前用户目录，无需管理员权限；卸载保留保险库数据。详见 [Windows 安装与卸载](docs/windows-installation.md)。
+
+便携版可解压完整的 `agent-vault-v0.1.8-windows-x64.zip`，双击 `AgentVault.exe`，也保留原来的 `Start-AgentVault.cmd` 入口。
 
 也可以运行：
 
@@ -107,6 +109,8 @@ ssh username@host -p 22
 ```powershell
 .\scripts\setup-browser.ps1
 .\scripts\build.ps1 -Package
+# 可选：需要 Inno Setup 6.6+，生成 Windows 安装包
+.\scripts\build-installer.ps1
 ```
 
 测试应以普通 Windows 用户权限运行。部分受限沙箱会在应用 ACL 后失去访问权，不能将这种失败误判为正常产品结果。
@@ -144,4 +148,4 @@ go test ./internal/vault -run 'TestBrowserRealLogin|TestPasswordModesRealBrowser
 
 [隐私说明 / Privacy policy](docs/privacy.md) · [Code signing policy](docs/code-signing.md)
 
-项目已于 2026-10-26 提交 SignPath Foundation 免费开源签名申请，等待审核，尚未获得批准。已发布的 v0.1.7 分发包仍未签名；提交申请不会改变现有分发包的签名状态。产品尚未上传到软件商店。
+项目于 2026-10-26 提交 SignPath Foundation 免费开源签名申请，后因项目现有认可度不足而被拒绝。安装版与便携版均未签名，不承诺消除 Windows 安全拦截。产品尚未上传到软件商店。

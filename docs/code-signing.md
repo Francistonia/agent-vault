@@ -4,9 +4,10 @@
 
 Agent Vault submitted an application for free open-source code signing from
 [SignPath Foundation](https://signpath.org/) on 2026-10-26. The application form
-confirmed submission; review is pending. No application approval or signing
-certificate has been received. The published v0.1.7 release is unsigned.
-Submitting the application does not sign or alter that release.
+confirmed submission. The maintainer subsequently reported that the application
+was declined because the project does not yet have sufficient community
+recognition. No approval or signing certificate has been received. Installer and
+portable releases remain unsigned; packaging does not create publisher trust.
 
 The project does not claim sponsorship or signing coverage before approval.
 If accepted and activated, the signing attribution will be:

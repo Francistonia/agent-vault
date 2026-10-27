@@ -54,10 +54,27 @@ jobs:
           go test ./... -count=1
           if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
 
-      - name: Upload the unsigned distribution for review
+      - name: Build the Windows installer
+        shell: pwsh
+        run: ./scripts/build-installer.ps1
+
+      - name: Verify install, launch, reinstall and uninstall
+        shell: pwsh
+        run: python installer/smoke-test.py --installer output/installers/agent-vault-v0.1.8-windows-x64-setup.exe --dist dist --report output/installers/installer-verification.json
+
+      - name: Package portable download and checksums
+        shell: pwsh
+        run: |
+          $taskOutput = Join-Path $PWD 'output/installers'
+          Compress-Archive -Path 'dist/*' -DestinationPath (Join-Path $taskOutput 'agent-vault-v0.1.8-windows-x64.zip')
+          Get-ChildItem -LiteralPath $taskOutput -File | Where-Object { $_.Name -ne 'SHA256SUMS.txt' } | Sort-Object Name | ForEach-Object {
+            '{0}  {1}' -f (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name
+          } | Set-Content -LiteralPath (Join-Path $taskOutput 'SHA256SUMS.txt') -Encoding ascii
+
+      - name: Upload the verified unsigned release files
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: agent-vault-windows-x64-unsigned
-          path: dist/
+          name: agent-vault-windows-x64-release
+          path: output/installers/
           if-no-files-found: error
           retention-days: 14

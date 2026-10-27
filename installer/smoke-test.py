@@ -81,8 +81,11 @@ def main():
                             winreg.KEY_READ | winreg.KEY_WOW64_64KEY) as key:
             if winreg.QueryValueEx(key, 'DisplayVersion')[0] != version:
                 raise RuntimeError('Incorrect uninstall registration version')
-            if Path(winreg.QueryValueEx(key, 'InstallLocation')[0]).resolve() != install:
-                raise RuntimeError('Incorrect uninstall registration directory')
+            registered_directory = Path(winreg.QueryValueEx(key, 'InstallLocation')[0])
+            # TEMP can contain a short name or junction on hosted Windows runners.
+            # Compare directory identity rather than one normalized path spelling.
+            if not registered_directory.samefile(install):
+                raise RuntimeError('Incorrect uninstall registration directory: ' + str(registered_directory))
         steps.append('per-user install, Unicode/spaces path, payload hashes, shortcuts and uninstall registration')
 
         exe = install / 'agent-vault.exe'

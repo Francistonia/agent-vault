@@ -59,7 +59,8 @@ connections, close browser sessions or remove saved connections. Locking does
 not revoke an already established remote session or credentials already given
 to a trusted authentication component.
 
-To uninstall, close Agent Vault and delete its extracted program directory.
+To uninstall an installed copy, close Agent Vault and use Windows Installed Apps.
+For a portable copy, close it and delete its extracted program directory.
 Users may separately delete the application-data directory and installed Agent
 Vault skill directories if they no longer need them. Removing a connection or
 the application does not remove an original private-key file, a server-side
